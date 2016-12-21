@@ -23,7 +23,7 @@ namespace Lab2
             Console.WriteLine("Simpe granatome");
         }
 
-        void IFireable.fire()
+        public void fire()
         {
             if (current < max_grenades)
             {
@@ -31,7 +31,7 @@ namespace Lab2
                 current++;
             }
         }
-        bool IFireable.recharge()
+        public bool recharge()
         {
             grenades = new Grenade[max_grenades];
             current = 0;

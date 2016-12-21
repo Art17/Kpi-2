@@ -14,7 +14,7 @@ namespace Lab2
             Console.WriteLine("Timed gronate");
         }
 
-        bool IExplodable.explode()
+        public bool explode()
         {
             if (is_valid)
             {
@@ -23,12 +23,12 @@ namespace Lab2
             }
             return false;
         }
-        void ITimed.set_time(int secs)
+        public void set_time(int secs)
         {
             System.Threading.Timer timer = null;
             timer = new System.Threading.Timer((obj) =>
             {
-                ((IExplodable)this).explode();
+                this.explode();
                 timer.Dispose();
             },
                         null, 1000*secs, System.Threading.Timeout.Infinite);
