@@ -12,7 +12,7 @@ namespace Lab2
     {
         public event WeaponBoughtEventHandler WeaponBought;
 
-        public Gun get_gun(string name)
+        public Gun getGun(string name)
         {
             WeaponBoughtEventArgs args = new WeaponBoughtEventArgs(name);
             onWeaponBought(args);

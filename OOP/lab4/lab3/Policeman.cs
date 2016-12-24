@@ -65,7 +65,7 @@ namespace Lab2
             }
         }
 
-        public void subscribe_on_shop_weapon_bought(Shop shop)
+        public void subscribeOnWeaponBought(Shop shop)
         {
             shop.WeaponBought += delegate (object sender, WeaponBoughtEventArgs args)
             {

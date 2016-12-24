@@ -8,6 +8,6 @@ namespace Lab2
 {
     interface ITimed
     {
-        void set_time(int secs);
+        void setTime(int secs);
     }
 }

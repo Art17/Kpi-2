@@ -10,30 +10,30 @@ namespace Lab2
     {
         private Grenade[] grenades;
         private int current;
-        private const int max_grenades = 5;
+        private const int MAX_GRENADES = 5;
 
         public GrenadeGun()
         {
-            grenades = new Grenade[max_grenades];
+            grenades = new Grenade[MAX_GRENADES];
             current = 0;
         }
 
-        public override void info()
+        public override void getInfo()
         {
             Console.WriteLine("Simpe granatome");
         }
 
         public void fire()
         {
-            if (current < max_grenades)
+            if (current < MAX_GRENADES)
             {
-                (grenades[current] as ITimed).set_time(3);
+                (grenades[current] as ITimed).setTime(3);
                 current++;
             }
         }
         public bool recharge()
         {
-            grenades = new Grenade[max_grenades];
+            grenades = new Grenade[MAX_GRENADES];
             current = 0;
             return true;
         }

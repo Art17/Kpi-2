@@ -12,7 +12,7 @@ namespace Lab2
     public class Prison : IEnumerable
     {
         [DataMember]
-        private const int max_prisoners = 10;
+        private const int MAX_PRISONERS = 10;
         [DataMember]
         private Prisoner[] cells;
         [DataMember]
@@ -20,7 +20,7 @@ namespace Lab2
 
         public Prison()
         {
-            cells = new Prisoner[max_prisoners];
+            cells = new Prisoner[MAX_PRISONERS];
             count = 0;
         }
 

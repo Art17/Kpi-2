@@ -6,74 +6,83 @@ using System.Threading.Tasks;
 
 namespace Lab2
 {
-    enum GunState { Working = 1, Charged = 2, SaffetyOn = 4};
+    enum GunState { Working = 1, Charged = 2, SaffetyOn = 4};  // Используйте перечисления вместо констант
+    //Имена классов должны представлять собой существительные и их комбинации
+    //Компактные функции, длина наибольше функции 15 строк
+    //Использование имен из пространства задач: safetyOff, safetyOn, fire, recharge
     class Gun : Weapon, IFireable
     {
         private int bullets;
-        private const int max_bullets = 8;
-        private DateTime noAmmoTime;
+        private const int MAX_BULLTETS = 8; //имена удобные для поиска
+        private DateTime noAmmoTime; //Имена дожны передавать намерения программиста
         private double precision = 1;
         private string label;
-        GunState state;
+        GunState gunState;   //Используйте содержательные имена
 
-        public Gun(string l = "Hello")
+        public Gun(string str = "Hello")   // Не используйте перенные l, o так как их легко перепутать с 1 и 0
         {
-            bullets = max_bullets;
-            state = GunState.Working;
-            state |= GunState.Charged;
-            state |= GunState.SaffetyOn;
-            label = l;
+            bullets = MAX_BULLTETS;
+            gunState = GunState.Working;
+            gunState |= GunState.Charged;
+            gunState |= GunState.SaffetyOn;
+            label = str;
         }
 
         ~Gun()
         {
-            Console.WriteLine("Policeman " + label + " destroyed");
+            Console.WriteLine("Gun " + label + " destroyed");
         }
-
-        public override void info()
+        //Имена методов дожны представлять собой глаголы и их комбинации
+        public override void getInfo()
         {
             Console.WriteLine("Simpe gun");
         }
-        public void safety_off()
+        public void safetyOff()
         {
-            state &= ~GunState.SaffetyOn;
+            gunState &= ~GunState.SaffetyOn;
         }
-        public void safety_on()
+        public void safetyOn()
         {
-            state &= GunState.SaffetyOn;
+            gunState &= GunState.SaffetyOn;
+        }
+        public bool isSafetyState()
+        {
+            return (gunState & GunState.SaffetyOn) == GunState.SaffetyOn;
         }
         public void fire()
         {
-            if ((state & GunState.SaffetyOn) == GunState.SaffetyOn)
+            if (isSafetyState())  //Инкапсулируйте сложные выражения
             {
                 return;
             }
             if (bullets == 1)
             {
                 noAmmoTime = DateTime.Now;
-                state &= ~GunState.Charged;
+                gunState &= ~GunState.Charged;
             }
             if (bullets > 0)
-            {
-                bullets--;
-                precision -= 0.001;
-                if (precision < 0.5)
-                    state &= ~GunState.Working;
-            }
+                makeShot();  // Блоки и отступы: блоки if, else, switch должны состоять из одной строки
             else
             {
-                NoAmmoExceptionArgs args = new NoAmmoExceptionArgs(noAmmoTime);
+                NoAmmoExceptionArgs args = new NoAmmoExceptionArgs(noAmmoTime);   // Используйте исключения, вместо кодов ошибок
                 throw new NoAmmoException(args);
             }
         }
-        public double get_precision()
+        private void makeShot()   // правило одной опреации, функция должна делать толко одно действие
+        {
+            bullets--;
+            precision -= 0.001;
+            if (precision < 0.5)
+                gunState &= ~GunState.Working;
+        }
+        public double getPrecision()
         {
             return precision;
         }
         public bool recharge()
         {
-            state &= GunState.Charged;
-            this.bullets = max_bullets;
+            gunState &= GunState.Charged;
+            this.bullets = MAX_BULLTETS;
             return true;
         }
 

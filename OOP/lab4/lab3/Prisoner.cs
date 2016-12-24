@@ -13,9 +13,9 @@ namespace Lab2
     public class Prisoner : IComparable
     {
         [DataMember]
-        private string first_name;
+        private string firstName;
         [DataMember]
-        private string last_name;
+        private string lastName;
         [DataMember]
         private int age;
         [DataMember]
@@ -25,8 +25,8 @@ namespace Lab2
 
         public Prisoner(string f, string l, int a, string d, int dan)
         {
-            first_name = f;
-            last_name = l;
+            firstName = f;
+            lastName = l;
             age = a;
             description = d;
             dangerous = dan;
@@ -34,7 +34,7 @@ namespace Lab2
 
         public int CompareTo(object obj)
         {
-            if (obj == null) return 1;
+            if (obj == null) return 1;  // Использование положительных условий
 
             Prisoner otherPrisoner = obj as Prisoner;
             if (otherPrisoner != null)
@@ -45,13 +45,13 @@ namespace Lab2
 
         public string FirstName
         {
-            get { return first_name; }
-            set { first_name = value; }
+            get { return firstName; }
+            set { firstName = value; }
         }
         public string LastName
         {
-            get { return last_name; }
-            set { last_name = value; }
+            get { return lastName; }
+            set { lastName = value; }
         }
         public int Age
         {

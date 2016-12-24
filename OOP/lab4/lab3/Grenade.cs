@@ -8,22 +8,22 @@ namespace Lab2
 {
     class Grenade : Weapon, IExplodable, ITimed
     {
-        bool is_valid = true;
-        public override void info()
+        bool isExploded = false;   // Используйте содержательные имена
+        public override void getInfo()
         {
             Console.WriteLine("Timed gronate");
         }
 
         public bool explode()
         {
-            if (is_valid)
+            if (!isExploded)
             {
-                is_valid = false;
+                isExploded = true;
                 return true;
             }
             return false;
         }
-        public void set_time(int secs)
+        public void setTime(int secs)
         {
             System.Threading.Timer timer = null;
             timer = new System.Threading.Timer((obj) =>

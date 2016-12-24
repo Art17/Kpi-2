@@ -8,6 +8,7 @@ namespace Lab2
 {
     abstract class Weapon
     {
-        public abstract void info();
+        //Имена методов дожны представлять собой глаголы и их комбинации
+        public abstract void getInfo();
     }
 }
